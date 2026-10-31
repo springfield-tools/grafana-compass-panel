@@ -10,14 +10,14 @@ test('should display "No data" when the query returns no points', async ({
 });
 
 test('should display the compass when numeric data is present', async ({
-  panelEditPage,
-  readProvisionedDataSource,
+  gotoPanelEditPage,
+  readProvisionedDashboard,
   page,
 }) => {
-  const ds = await readProvisionedDataSource({ fileName: 'datasources.yml' });
-  await panelEditPage.datasource.set(ds.name);
-  await panelEditPage.setVisualization('Compass');
-  await expect(page.getByTestId('compass-dial')).toBeVisible();
+  const dashboard = await readProvisionedDashboard({ fileName: 'dashboard.json' });
+  const panelEditPage = await gotoPanelEditPage({ dashboard, id: '1' });
+  await expect(panelEditPage.panel.locator.getByTestId('compass-dial')).toBeVisible();
+  await expect(page.getByTestId('compass-readout')).toContainText('°');
 });
 
 test('should show the direction trail when the option is enabled', async ({
