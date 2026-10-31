@@ -1,0 +1,27 @@
+# This GitHub Action automates the process of building Grafana plugins.
+# (For more information, see https://github.com/grafana/plugin-actions/blob/main/build-plugin/README.md)
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*' # Run workflow on version tags, e.g. v1.0.0.
+
+permissions: read-all
+
+jobs:
+  release:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      # Unsigned on purpose. Load it with GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=springfield-compass-panel.
+      # The action builds dist, zips it, and attaches the zip to a draft GitHub Release for this tag.
+      # The tag must match package.json (v1.0.0 for version 1.0.0).
+      - uses: grafana/plugin-actions/build-plugin@build-plugin/v1.2.1
+        with:
+          node-version: '22'
