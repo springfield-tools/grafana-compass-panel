@@ -35,7 +35,7 @@ Null and non-numeric samples are skipped. If the latest finite sample is missing
 
 The plugin is unsigned. Grafana OSS 13.0.2 will load it when the plugin id is allow-listed.
 
-1. Download `springfield-compass-panel-1.0.0.zip` from the GitHub Release for tag `v1.0.0` (the release workflow creates a **draft** release and attaches the zip). Publishing the draft makes the zip public. You can also download the zip artifact from a successful CI run on `main`.
+1. Download `springfield-compass-panel-1.0.1.zip` from the GitHub Release for tag `v1.0.1` (the release workflow creates a **draft** release and attaches the zip). Publishing the draft makes the zip public. You can also download the zip artifact from a successful CI run on `main`. Version 1.0.0 draws the dial and readout but clips the needle off the dial.
 2. Unzip it. The archive contains a directory named `springfield-compass-panel`.
 3. Mount that directory and allow the unsigned plugin:
 
@@ -93,7 +93,7 @@ npm run build
 
 `npm run server` starts Grafana OSS 13.0.2 with the plugin mounted and unsigned loading enabled. Override with `GRAFANA_IMAGE` and `GRAFANA_VERSION`.
 
-The production bundle is written to `dist/`. A tag `v*` that matches `package.json` (`v1.0.0` for `1.0.0`) runs [`.github/workflows/release.yml`](https://github.com/springfield-tools/grafana-compass-panel/blob/main/.github/workflows/release.yml), which builds the plugin and attaches the zip to a draft GitHub Release. Pull requests run [`.github/workflows/ci.yml`](https://github.com/springfield-tools/grafana-compass-panel/blob/main/.github/workflows/ci.yml) (typecheck, lint, unit tests, production build, zip artifact).
+The production bundle is written to `dist/`. A tag `v*` that matches `package.json` (`v1.0.1` for `1.0.1`) runs [`.github/workflows/release.yml`](https://github.com/springfield-tools/grafana-compass-panel/blob/main/.github/workflows/release.yml), which builds the plugin and attaches the zip to a draft GitHub Release. Pull requests run [`.github/workflows/ci.yml`](https://github.com/springfield-tools/grafana-compass-panel/blob/main/.github/workflows/ci.yml) (typecheck, lint, unit tests, production build, zip artifact).
 
 ## Why a custom panel
 

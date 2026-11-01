@@ -1,6 +1,6 @@
 {
   "name": "compass",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Grafana panel plugin: wind-direction compass with a shortest-path animated needle.",
   "scripts": {
     "build": "webpack -c ./webpack.config.ts --env production",
