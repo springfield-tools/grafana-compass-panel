@@ -9,7 +9,7 @@ It is aimed at a Particle Photon weather station that exports Prometheus metrics
 
 Built-in gauge and Canvas panels can show the number, but they cannot spin a needle smoothly by that value. This panel does.
 
-![Compass needle at south-southwest, 202.5 degrees, with wind speed in the hub](src/img/compass-screenshot.png)
+![Compass needle at south-southwest, 202.5 degrees, with wind speed in the hub](https://raw.githubusercontent.com/springfield-tools/grafana-compass-panel/main/src/img/compass-screenshot.png)
 
 ## What the panel shows
 
@@ -93,8 +93,8 @@ npm run build
 
 `npm run server` starts Grafana OSS 13.0.2 with the plugin mounted and unsigned loading enabled. Override with `GRAFANA_IMAGE` and `GRAFANA_VERSION`.
 
-The production bundle is written to `dist/`. A tag `v*` that matches `package.json` (`v1.0.0` for `1.0.0`) runs [`.github/workflows/release.yml`](.github/workflows/release.yml), which builds the plugin and attaches the zip to a draft GitHub Release. Pull requests run [`.github/workflows/ci.yml`](.github/workflows/ci.yml) (typecheck, lint, unit tests, production build, zip artifact).
+The production bundle is written to `dist/`. A tag `v*` that matches `package.json` (`v1.0.0` for `1.0.0`) runs [`.github/workflows/release.yml`](https://github.com/springfield-tools/grafana-compass-panel/blob/main/.github/workflows/release.yml), which builds the plugin and attaches the zip to a draft GitHub Release. Pull requests run [`.github/workflows/ci.yml`](https://github.com/springfield-tools/grafana-compass-panel/blob/main/.github/workflows/ci.yml) (typecheck, lint, unit tests, production build, zip artifact).
 
 ## Why a custom panel
 
-See [docs/adr/0001-custom-compass-panel.md](docs/adr/0001-custom-compass-panel.md).
+See [docs/adr/0001-custom-compass-panel.md](https://github.com/springfield-tools/grafana-compass-panel/blob/main/docs/adr/0001-custom-compass-panel.md).
