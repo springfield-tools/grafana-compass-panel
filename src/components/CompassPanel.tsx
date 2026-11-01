@@ -6,6 +6,7 @@ import { useStyles2, useTheme2 } from '@grafana/ui';
 import { buildCompassModel } from 'compassModel';
 import { pointOnDial } from 'compassMath';
 import { CompassOptions } from 'types';
+import { useAnimatedAngle } from 'useAnimatedAngle';
 import { useShortestAngle } from 'useShortestAngle';
 
 interface Props extends PanelProps<CompassOptions> {}
@@ -55,22 +56,17 @@ const getStyles = (theme: GrafanaTheme2) => ({
     fontSize: theme.typography.bodySmall.fontSize,
     color: theme.colors.text.secondary,
   }),
-  // Rotate around the dial origin (the viewBox center), not the needle's bounding box.
-  needle: css({
-    transformBox: 'view-box',
-    transformOrigin: 'center',
-    transition: 'transform 700ms cubic-bezier(0.45, 0, 0.2, 1)',
-    '@media (prefers-reduced-motion: reduce)': {
-      transition: 'none',
-    },
-  }),
 });
 
 export function CompassPanel({ options, data, width, height, fieldConfig, id }: Props) {
   const theme = useTheme2();
   const styles = useStyles2(getStyles);
   const model = buildCompassModel(options, data);
-  const angle = useShortestAngle(model.target);
+  // CSS transform on this <g> is clipped away: transform-box:view-box rotates
+  // around the wrong origin when the viewBox is centered at (0, 0). The SVG
+  // attribute rotates around the user-space origin, which is the dial center.
+  const destination = useShortestAngle(model.target);
+  const angle = useAnimatedAngle(destination);
 
   if (model.emptySeries) {
     return <PanelDataErrorView fieldConfig={fieldConfig} panelId={id} data={data} needsNumberField />;
@@ -169,7 +165,7 @@ export function CompassPanel({ options, data, width, height, fieldConfig, id }: 
           )}
 
           {angle != null && (
-            <g data-testid="compass-needle" className={styles.needle} style={{ transform: `rotate(${angle}deg)` }}>
+            <g data-testid="compass-needle" transform={`rotate(${angle})`}>
               <polygon points="-3.2,8 0,30 3.2,8" fill={theme.colors.text.secondary} />
               <polygon points="0,-82 -5.4,10 0,3 5.4,10" fill={theme.colors.primary.main} />
               <circle

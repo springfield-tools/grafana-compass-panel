@@ -3,9 +3,9 @@ import { shortestAngleDelta } from './compassMath';
 
 /**
  * Display angle that always takes the short way to `target`.
- * The returned number is not wrapped: 359° then 1° becomes 361°, so a CSS
- * transition rotates through north instead of the long way around the dial.
- * The first reading snaps into place; later changes ease from the previous one.
+ * The returned number is not wrapped: 359° then 1° becomes 361°, so the
+ * needle animation passes through north instead of the long way around the dial.
+ * The first reading snaps into place; later changes start from the previous one.
  */
 export function useShortestAngle(target: number | null): number | null {
   const [state, setState] = useState<{ target: number | null; angle: number | null }>({
