@@ -24,4 +24,4 @@ jobs:
       # The tag must match package.json (v1.0.0 for version 1.0.0).
       - uses: grafana/plugin-actions/build-plugin@build-plugin/v1.2.1
         with:
-          node-version: '22'
+          node-version: '26.13.0'

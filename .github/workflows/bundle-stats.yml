@@ -25,3 +25,5 @@ jobs:
           persist-credentials: false
 
       - uses: grafana/plugin-actions/bundle-size@bundle-size/v1.1.0
+        with:
+          node-version: '26.13.0'

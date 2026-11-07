@@ -81,7 +81,7 @@ Set **Direction field** to `wind_direction_degrees` and **Speed field** to `wind
 
 ## Development
 
-Requires Node.js 22.
+Requires Node.js 26 LTS. Development and CI pin [26.13.0](https://nodejs.org/dist/v26.13.0/) (Lithium). The package manager stays npm 11.21.1.
 
 ```bash
 npm install
