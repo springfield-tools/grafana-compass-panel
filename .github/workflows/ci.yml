@@ -31,7 +31,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v7
         with:
-          node-version: '22'
+          node-version: '26.13.0'
           cache: 'npm'
 
       - name: Install dependencies
@@ -183,7 +183,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v7
         with:
-          node-version: '22'
+          node-version: '26.13.0'
           cache: 'npm'
 
       - name: Install dev dependencies
